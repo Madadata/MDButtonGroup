@@ -1,5 +1,5 @@
 import React from 'react';
-import MDButtonGroup from './src/MDButtonGroup.jsx';
+import MDButtonGroup from './src/MDButtonGroup.js';
 
 const App = () => (
   <div>

@@ -1,61 +1,46 @@
 /* put your css here */
-:local .container {
-  
-  .clicked {
+:local .container .clicked {
     color: pink;
-  }
-
-  .button {
+}
+:local .container .button {
     display: inline-block;
     margin: 5px 0px;
     padding: 6px 12px;
     border-width: 1px;
     border-style: solid;
-
     text-decoration: none;
     text-align: center;
     vertical-align: center;
-
     color: #000;
     border-color: #ccc;
     background-color: #fff;
-
     font-size: 14px;
     font-weight: 400;
-
     cursor: pointer;
-  }
-
-  .button:first-child {
+}
+:local .container .button:first-child {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-  }
-
-  .button:last-child {
+}
+:local .container .button:last-child {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-  }
-
-  .button:focus {
+}
+:local .container .button:focus {
     outline: none;
-  }
-
-  .button:hover {
+}
+:local .container .button:hover {
     border-color: #adadad;
     background-color: #e6e6e6;
-  }
-
-  .button:active {
+}
+:local .container .button:active {
     border-color: #8c8c8c;
     background-color: #d4d4d4;
-  }
-
-  .button[disabled] {
+}
+:local .container .button[disabled] {
     box-shadow: none;
     opacity: .65;
-  }
-
-  .button[disabled]:hover {
+}
+:local .container .button[disabled]:hover {
     cursor: not-allowed;
-  }
 }
