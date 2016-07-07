@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './MDButtonGroup.css';
+import classNames from 'classnames';
 import clone from 'lodash/clone';
 
 class MDButtonGroup extends Component {
@@ -10,6 +11,7 @@ class MDButtonGroup extends Component {
       activeButtons: new Set([]),
     }
     this.onRadioClick = this.onRadioClick.bind(this);
+    this.onCheckClick = this.onCheckClick.bind(this);
   }
 
   onRadioClick(e) {
@@ -24,6 +26,18 @@ class MDButtonGroup extends Component {
     this.setState({
       activeButtons: newActiveButtons
     });
+  }
+
+  onCheckClick(e) {
+    e.preventDefault();
+    const { activeButtons } = this.state;
+    const { innerHTML } = e.target;
+    if (activeButtons.has(innerHTML)){
+      activeButtons.delete(innerHTML);
+    } else {
+      activeButtons.add(innerHTML)
+    }
+    this.forceUpdate();
   }
 
   getButtonGroup() {
@@ -45,8 +59,33 @@ class MDButtonGroup extends Component {
             disabled={disabled}
           >
             {displayName}
+
           </button>
         );
+      })
+    } else if (type === 'checkbox') {
+      return buttons.map((button, bi) => {
+        const { displayName, value }  = button;
+        let clicked = false;
+        let class_Names;
+        if (activeButtons.has(displayName)) {
+          console.log("haha");
+          class_Names = classNames(styles.clicked);
+          clicked = true;
+        } else {
+          console.log("v");
+          class_Names = classNames(styles.button);
+        }
+        return (
+          <button
+            value={value}
+            key={bi}
+            className={class_Names}
+            onClick={this.onCheckClick}
+          >
+            {displayName}
+          </button>
+        )
       })
     }
   }
@@ -70,14 +109,5 @@ MDButtonGroup.propTypes = {
   type: PropTypes.oneOf(['radio', 'checkbox']),
 }
 
-MDButtonGroup.defaultProps = {
-  buttons: [
-    { displayName: 'button1', value: '1' },
-    { displayName: 'button2', value: '2' },
-    { displayName: 'button3', value: '3' },
-    { displayName: 'button4', value: '4' },
-  ],
-  type: 'radio',
-}
 
 export default MDButtonGroup;
